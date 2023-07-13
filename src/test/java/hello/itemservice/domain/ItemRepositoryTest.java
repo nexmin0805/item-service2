@@ -5,15 +5,10 @@ import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.util.Platform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.List;
 
@@ -35,7 +30,7 @@ class ItemRepositoryTest {
     void beforeEach(){
         status = transactionManager.getTransaction(new DefaultTransactionDefinition());
     }
-
+*/
     @AfterEach
     void afterEach() {
         //MemoryItemRepository 의 경우 제한적으로 사용
@@ -43,7 +38,7 @@ class ItemRepositoryTest {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
     }
-*/
+
 
     @Test
     void save() {
@@ -105,6 +100,6 @@ class ItemRepositoryTest {
 
     void test(String itemName, Integer maxPrice, Item... items) {
         List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice));
-        assertThat(result).containsExactly(items);
+         assertThat(result).containsExactly(items);
     }
 }
